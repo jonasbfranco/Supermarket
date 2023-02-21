@@ -1,9 +1,11 @@
+import { StatusBar } from 'expo-status-bar'
 import React from 'react'
 import { SafeAreaView, StyleSheet, Text, View } from 'react-native'
 
 const HomeScreen = () => {
   return (
     <SafeAreaView style={styles.container}>
+      <StatusBar style='dark' />
         <Text style={styles.title}>
           Bem vindo ao APP {'\n'}
           Estamos em desenvolvimento!
@@ -20,7 +22,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: '#FFFFFF',
-        paddingVertical: 150
+        paddingVertical: 150,
     },
     title: {
       fontSize: 22,
