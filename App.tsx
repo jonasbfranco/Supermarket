@@ -1,22 +1,31 @@
-import { StatusBar } from "expo-status-bar";
+import React, { useState } from 'react';
+import 'react-native-gesture-handler';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import OnboardingScreen from './src/pages/OnboardingScreen';
+import HomeScreen from './src/pages/HomeScreen';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { SafeAreaView, StyleSheet, Text, View } from "react-native";
 
+const Stack = createNativeStackNavigator();
+
 export default function App() {
+
+  const [isAppFirstLaunched, setIsAppFirstLaunched] = useState(null)
   return (
-    <View style={styles.container}>
-      <SafeAreaView>
-        <Text>Open up App.tsx to start working on your app!</Text>
-        <StatusBar style="auto" />
-      </SafeAreaView>
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen 
+          name="OnboardingScreen" 
+          component={OnboardingScreen}
+          options={{ title: 'OnboardingScreen', headerShown: false }}
+        />
+        <Stack.Screen 
+          name="HomeScreen"
+          component={HomeScreen}
+          options={{ title: 'HomeScreen', headerShown: false }}
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});
