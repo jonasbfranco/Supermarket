@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet, Text, View, Image, FlatList, Dimensions } from 'react-native'
+import { StyleSheet, Text, View, Image, FlatList, Dimensions, TouchableOpacity } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context';
 import colors from '../styles/colors';
 
@@ -30,7 +30,7 @@ const slides = [
 const Slide = ({item}) => {
     return (
         <View style={{alignItems: 'center'}}>
-            <Image source={item?.image} style={{height: '75%', width, resizeMode: 'contain'}} />
+            <Image source={item?.image} style={{height: '70%', width, resizeMode: 'contain'}} />
             <Text style={styles.title}>{item?.title}</Text>
             <Text style={styles.subtitle}>{item?.subtitle}</Text>
         </View>
@@ -39,18 +39,81 @@ const Slide = ({item}) => {
 
 
 const OnboardingScreen = () => {
+
+  const Footer = () => {
+    return (
+      <View 
+        style={{
+          height: height * 0.20,
+          justifyContent: 'space-between',
+          paddingHorizontal: 20,
+          // backgroundColor: 'red',
+        }}
+      >
+        <View
+            style={{flexDirection: 'row', 
+            justifyContent: 'center', 
+            marginTop: 20 }}
+        >
+            
+        </View>
+
+          {/* Botoes */}
+          <View style={{marginBottom:20}}>
+            <View style={{flexDirection: 'row'}}>
+              <TouchableOpacity 
+                  style={[
+                          styles.btn, 
+                          {backgroundColor: 'transparent', 
+                              borderWidth: 1, 
+                              borderColor: colors.blue}
+                          ]}>
+                  <Text 
+                      style={{
+                          fontWeight: 'bold', 
+                          fontSize: 15, 
+                          color: colors.blue
+                          }}
+                      onPress={() => {}} 
+                  >PULAR</Text>
+              </TouchableOpacity>
+              <View style={{width: 15}} />
+                  <TouchableOpacity 
+                        style={[
+                          styles.btn,
+                          {backgroundColor: colors.blue}]}>
+                      <Text 
+                          style={{
+                              fontWeight: 'bold', 
+                              fontSize: 15,
+                              color: colors.white}}
+                          onPress={() => {}} 
+                      >PRÓXIMO</Text>
+                  </TouchableOpacity>
+              </View>  
+
+          
+          </View> 
+
+      </View>
+    )
+  }
+
+
   return (
     <SafeAreaView
         style={{flex: 1, backgroundColor: colors.blue_light}}
     >
         <FlatList 
             data={slides}
-            contentContainerStyle={{height: height * 0.75, backgroundColor: colors.blue_light}}
+            contentContainerStyle={{height: height * 0.70, backgroundColor: colors.blue_light}}
             horizontal
             pagingEnabled
             showsHorizontalScrollIndicator={false}
+            showsVerticalScrollIndicator={false}
             renderItem={({item}) => <Slide item={item} />}
         />
+        <Footer />
     </SafeAreaView>
   )
 }
